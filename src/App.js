@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { Route,
+  Switch
+ } from 'react-router-dom';
+
+import TodoList from './components/Todo';
+import User from './components/User';
 import logo from './logo.svg';
 import './App.css';
 import fetch from 'isomorphic-fetch';
@@ -25,7 +31,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        {this.props.children}
+        <Route path='/' component={TodoList} />
+        <Route path='/user' component={User} />
       </div>
     );
   }
