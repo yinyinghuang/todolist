@@ -1,4 +1,5 @@
 import React from 'react';
+import {setLoggedUser} from '../../../util/authUtil';
 
 const LogoutLayout = props => {
 	const {user} = props;
@@ -8,7 +9,7 @@ const LogoutLayout = props => {
 				<label>Username:</label><span>{user ?user.name : null}</span>
 			</div>
 			<div>
-				<button>Logout</button>
+				<button onClick={() => setLoggedUser(null)}>Logout</button>
 			</div>
 		</form>
 	);

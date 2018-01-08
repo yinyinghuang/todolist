@@ -1,15 +1,13 @@
 import React from 'react';
 import { Route,Switch } from 'react-router-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import reducers from './reducers';
+import store from './store';
 import TodoList from './components/Todo';
 import User from './components/User';
 import logo from './logo.svg';
 import './App.css';
 
-const store = createStore(reducers);
 
 const App = (props) => (  
     <Provider store={store}>

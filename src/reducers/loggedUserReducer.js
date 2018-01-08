@@ -1,24 +1,26 @@
 import * as CONST from '../const';
 
 const initialState = {
-	pendding:true,
+	pendding:false,
 	logged:true,
 	user:null
 }
 
 const loggedUserReducer = (state = initialState, action) =>{
-	if(action.type === CONST.GET_LOGGED_USER){
-		return Object.assign({},state,{
-			pendding:false
-		})
-	} else if(action.type === CONST.SET_LOGGED_USER){
-		return Object.assign({},state,{
-			pendding:false,
-			logged:action.logged
-		})
-	}
-
-	return state;
+	switch (action.type) {
+		case CONST.GET_LOGGED_USER:
+			return Object.assign({},state,{
+				pendding:true
+			});
+		case CONST.SET_LOGGED_USER:
+			return Object.assign({},state,{
+				pendding:false,
+				logged:action.userInfo ? true : false,
+				user:action.userInfo
+			});
+		default :
+			return state;
+	}	
 }
 
 export default loggedUserReducer;
