@@ -11,10 +11,10 @@ const setLoggedUser = (userInfo) =>({
 
 const authUser = account => (
 	dispatch => {
-		fetch('/user/'/*,{
+		fetch('/user/',{
 			method:'post',
 			body:JSON.stringify(account)
-		}*/)
+		})
 			.then(res => res.json())
 			.then(res => dispatch(setLoggedUser(res)))
 			.catch(e => console.log(e))
