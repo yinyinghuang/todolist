@@ -8,6 +8,7 @@
     "koa-cors": "0.0.16",
     "koa-router": "^7.3.0",
     "koa-static": "^4.0.2",
+    "mongoose": "^4.13.9",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
