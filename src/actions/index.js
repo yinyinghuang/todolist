@@ -11,12 +11,16 @@ const setLoggedUser = (userInfo) =>({
 
 const authUser = account => (
 	dispatch => {
-		fetch('/user/',{
+		fetch('/user/login',{
 			method:'post',
+			headers:{'Content-type':'application/json'},
 			body:JSON.stringify(account)
 		})
 			.then(res => res.json())
-			.then(res => dispatch(setLoggedUser(res)))
+			.then(res => {
+				dispatch(setLoggedUser(res));
+				window.history.pushState(null,null,'/');
+			})
 			.catch(e => console.log(e))
 	}
 );

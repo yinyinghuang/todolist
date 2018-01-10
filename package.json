@@ -5,6 +5,7 @@
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
     "koa-cors": "0.0.16",
     "koa-router": "^7.3.0",
     "koa-static": "^4.0.2",

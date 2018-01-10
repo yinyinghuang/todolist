@@ -20,7 +20,7 @@ class LoginLayout extends Component{
 					<input name="password" type="password" />
 				</div>
 				<div>
-					<input name="submit" type="submit" value="submit" />
+					<input name="submit" type="submit" value="Sign In" />
 				</div>
 			</form>
 		);

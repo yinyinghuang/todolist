@@ -1,15 +1,8 @@
 const router=require('koa-router')();
 const path = require('path');
 
-const User = require('../controllers/UserController.js');
-const Todo = require('../controllers/TodoController.js');
+const UserRouter = require('./UserRouter.js');
 
-
-router.post('/user',User.signIn);
-
-router.get('/api/todolist',async ctx =>{
-	
-	ctx.body= '';
-});
+router.use('/',UserRouter.routes());
 
 module.exports = router;
