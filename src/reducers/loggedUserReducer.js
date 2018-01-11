@@ -1,18 +1,15 @@
-import * as CONST from '../const';
+import {
+	SET_LOGGED_USER
+} from '../const';
 
 const initialState = {
-	pendding:false,
-	logged:true,
 	user:null
 }
 
 const loggedUserReducer = (state = initialState, action) =>{
 	switch (action.type) {
-		case CONST.GET_LOGGED_USER:
-			return Object.assign({},state,{
-				pendding:true
-			});
-		case CONST.SET_LOGGED_USER:
+		
+		case SET_LOGGED_USER:
 			return Object.assign({},state,{
 				pendding:false,
 				logged:action.userInfo ? true : false,

@@ -13,7 +13,7 @@ class TodoList extends Component {
 
   componentDidMount({logged} = this.props) {
     if(logged){
-      fetch('/api/todolist')
+      fetch('/todolist')
         .then(res => res.json())
         .then(res => this.setState({todos:res}))
         .catch(e => console.log(e));

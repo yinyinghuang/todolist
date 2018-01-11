@@ -1,32 +1,10 @@
-import {GET_LOGGED_USER,SET_LOGGED_USER} from '../const';
+import {push} from 'react-router-redux';
 
-const getLoggedUser = () =>({
-	type:GET_LOGGED_USER
-});
+import httpState from './httpStateAction';
+import authUser from './authUserAction';
 
-const setLoggedUser = (userInfo) =>({
-	type:SET_LOGGED_USER,
-	userInfo
-});
-
-const authUser = account => (
-	dispatch => {
-		fetch('/user/login',{
-			method:'post',
-			headers:{'Content-type':'application/json'},
-			body:JSON.stringify(account)
-		})
-			.then(res => res.json())
-			.then(res => {
-				dispatch(setLoggedUser(res));
-				window.history.pushState(null,null,'/');
-			})
-			.catch(e => console.log(e))
-	}
-);
 
 export default{
-	getLoggedUser,
-	setLoggedUser,
-	authUser
+	...httpState,
+	...authUser
 }

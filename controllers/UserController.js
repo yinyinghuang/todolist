@@ -6,7 +6,7 @@ module.exports = {
       success: false,
       message: '用户不存在'
     };
-    //从请求体中获得参数
+    //从请求体中获得参数``
     const { username, password } = ctx.request.body;
     //检查数据库中是否存在该用户名
     await User.findOne({

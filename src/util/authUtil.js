@@ -2,6 +2,7 @@ import store from '../store';
 import actions from '../actions';
 
 export const getLoggedUser = () =>{
+	
 	store.dispatch(actions.getLoggedUser());
 }
 
