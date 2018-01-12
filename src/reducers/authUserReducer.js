@@ -11,8 +11,6 @@ const loggedUserReducer = (state = initialState, action) =>{
 		
 		case SET_LOGGED_USER:
 			return Object.assign({},state,{
-				pendding:false,
-				logged:action.userInfo ? true : false,
 				user:action.userInfo
 			});
 		default :

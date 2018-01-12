@@ -20,7 +20,7 @@ module.exports = {
       } else {
         //判断密码是否正确
         if (password === user.password) {
-            ctx.body = { success: true, message: '登入成功' }
+            ctx.body = { success: true, message: '登入成功',user:{username,password} }
         } else {
             ctx.body = { success: false, message: '密码错误' }
         }

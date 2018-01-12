@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 
-import loggedUserReducer from './loggedUserReducer';
+import authUserReducer from './authUserReducer';
 import httpStateReducer from './httpStateReducer';
 
 const reducers = combineReducers({
-	loggedUserReducer,
+	authUserReducer,
 	httpStateReducer,
 	routerReducer
 });

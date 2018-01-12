@@ -1,13 +1,11 @@
 import {push} from 'react-router-redux';
-import {
-	pendding,
-	filled,
-	rejected
-} from './httpStateAction';
+import httpState from './httpStateAction';
 
 import {
 	SET_LOGGED_USER
 } from '../const';
+
+const {pendding,filled,rejected} = httpState;
 
 const setLoggedUser = (userInfo) =>({
 	type:SET_LOGGED_USER,
@@ -29,6 +27,7 @@ const authUser = account => (
 			.then(res => {
 				if(res.success){
 					dispatch(setLoggedUser(res.user));
+					dispatch(filled(res.msg));
 					dispatch(push('/'));
 				} else {
 					dispatch(rejected(res.msg));

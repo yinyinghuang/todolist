@@ -3,17 +3,11 @@ import {connect} from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import fetch from 'isomorphic-fetch';
 
-import {getLoggedUser} from '../../util/authUtil';
-
 class TodoList extends Component {
 
-  componentWillMount(){
-    getLoggedUser();
-  }
-
-  componentDidMount({logged} = this.props) {
-    if(logged){
-      fetch('/todolist')
+  componentDidMount({user} = this.props) {
+    if(user){
+      fetch('/todo')
         .then(res => res.json())
         .then(res => this.setState({todos:res}))
         .catch(e => console.log(e));
@@ -21,8 +15,8 @@ class TodoList extends Component {
   }
 
   render() {
-    const {logged} = this.props;
-    return logged ?
+    const {user} = this.props;
+    return user ?
       <div>Todo</div>
       :
       <Redirect to="/user/login"/>;
@@ -31,7 +25,7 @@ class TodoList extends Component {
 
 const mapStateToProps = (state,ownProps) => {
   return {
-    logged:state.loggedUserReducer.logged
+    user:state.loggedUserReducer.user
   }
 };
 
