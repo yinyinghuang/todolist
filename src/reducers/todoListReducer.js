@@ -6,7 +6,8 @@ import {
 } from '../const';
 
 const initialState = {
-	todo:null
+	todo:null,
+	todos:null
 }
 
 const todoListReducer = (state = initialState, action) =>{

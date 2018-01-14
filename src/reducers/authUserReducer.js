@@ -3,10 +3,10 @@ import {
 } from '../const';
 
 const initialState = {
-	user:null
+	user:false
 }
 
-const loggedUserReducer = (state = initialState, action) =>{
+const authUserReducer = (state = initialState, action) =>{
 	switch (action.type) {
 		
 		case SET_LOGGED_USER:
@@ -18,4 +18,4 @@ const loggedUserReducer = (state = initialState, action) =>{
 	}	
 }
 
-export default loggedUserReducer;
+export default authUserReducer;

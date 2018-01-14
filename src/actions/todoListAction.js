@@ -10,10 +10,10 @@ import {
 
 const {pendding,filled,rejected} = httpState;
 
-const createTodo = (todo) => {
+const createTodo = (todo) => dispatch => {
 	dispatch(pendding());
 	fetch('/todo/create',{
-		method:post,
+		method:'post',
 		headers:{'Content-type':'application/json'},
 		body:JSON.stringify(todo)
 	})
@@ -23,7 +23,7 @@ const createTodo = (todo) => {
 				dispatch(filled('The item has been saved'));
 				dispatch(push('/todo'));
 			}else {
-				dispatch(rejected(msg));
+				dispatch(rejected(res.msg));
 			}
 		})
 		.catch(res => {
@@ -31,19 +31,19 @@ const createTodo = (todo) => {
 		})
 };
 
-const retrieveTodo = (todo) =>({
+const retrieveTodo = (todo) => ({
 	type:RETRIEVETODO,
 	todo
 });
 
-const updateTodo = (_id) =>({
+const updateTodo = (_id) => ({
 	type:UPDATETODO,
 	_id
 });
 
-const deleteTodo = (condition) =>({
+const deleteTodo = (condition) => ({
 	type:DELETETODO,
-	todo
+	condition
 });
 
 export default{

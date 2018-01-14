@@ -18,13 +18,15 @@ module.exports = {
 					{success :false,msg:err}
 					:
 					{success:true,todo:todo}
+				console.log('------findById-------\n',todo);
 			})
 			:
-			await Todo.find({userId},(err,todo) => {
+			await Todo.find({},(err,todo) => {
 				ctx.body = err ? 
 					{success :false,msg:err}
 					:
 					{success:true,todo:todo}
+				console.log('------find-------\n',todo);
 			});
 	},
 	async update(ctx) {
