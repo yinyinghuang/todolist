@@ -3,10 +3,11 @@ import {
 } from '../const';
 
 const initialState = {
-	user:false
+	user:false,
+	redirectUrl:null
 }
 
-const authUserReducer = (state = initialState, action) =>{
+const authUser = (state = initialState, action) =>{
 	switch (action.type) {
 		
 		case SET_LOGGED_USER:
@@ -18,4 +19,4 @@ const authUserReducer = (state = initialState, action) =>{
 	}	
 }
 
-export default authUserReducer;
+export default authUser;

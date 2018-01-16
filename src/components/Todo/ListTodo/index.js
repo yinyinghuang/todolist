@@ -1,34 +1,48 @@
 import React,{Component} from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import todoListAction from '../../../actions/todoListAction';
+import actions from '../../../actions/todoListAction';
 
 class ListTodo extends Component {
 
 	componentDidMount() {
-	  const getListTodo = (this.props);
-	  getListTodo();
+	  const {getListTodo,user} = this.props;
+	  getListTodo(user._id);
 	}
 
 	render(){
-		const {todos} = this.props;
+
+		const {todo,pendding} = this.props;
 		return (
 			<div>
-				{todos.map((todo) => (
-					<div key={todo._id}>{todo.task}</div>
-				))}
+				<div><Link to="/add">add new task</Link></div>
+				{
+					pendding ? 
+						<div>loading data...</div>
+						:
+						todo ?
+							todo.map(item => (
+								<div key={item._id}>{item.task}</div>
+							))
+							:
+							<div>no task</div>
+				}
 			</div>
 		)
 	}
 }
 
 const mapStateToProps = (state) => ({
-	todos:state.todos
+	todo:state.todoList.todo,
+	user:state.authUser.user,
+	pendding:state.httpState.pendding
 });
 
-const mapDispatchToProps = (dispatch) => ({
-	getListTodo:dispatch => dispatch(todoListAction.retrieve())
-})
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+	getListTodo:actions.getListTodo
+},dispatch)
 
 export default connect(
 	mapStateToProps,

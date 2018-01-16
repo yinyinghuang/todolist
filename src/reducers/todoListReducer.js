@@ -10,10 +10,14 @@ const initialState = {
 	todos:null
 }
 
-const todoListReducer = (state = initialState, action) =>{
+const todoList = (state = initialState, action) =>{
 	switch (action.type) {
 		
 		case CREATETODO:
+			return Object.assign({},state,{
+				todo:action.todo
+			});
+		case RETRIEVETODO:
 			return Object.assign({},state,{
 				todo:action.todo
 			});
@@ -22,4 +26,4 @@ const todoListReducer = (state = initialState, action) =>{
 	}	
 }
 
-export default todoListReducer;
+export default todoList;

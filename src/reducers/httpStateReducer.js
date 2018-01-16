@@ -11,7 +11,7 @@ const initialState = {
 	msg:null
 }
 
-const httpStateReducer = (state = initialState, action) =>{
+const httpState = (state = initialState, action) =>{
 	switch (action.type) {
 		case PENDDING:
 			return Object.assign({},state,{
@@ -39,4 +39,4 @@ const httpStateReducer = (state = initialState, action) =>{
 	}	
 }
 
-export default httpStateReducer;
+export default httpState;

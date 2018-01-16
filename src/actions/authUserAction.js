@@ -14,8 +14,6 @@ const setLoggedUser = (userInfo) =>({
 
 const authUser = account => (
 	dispatch => {
-
-		//切换app状态为pedding
 		dispatch(pendding());
 
 		fetch('/user/login',{
@@ -28,7 +26,7 @@ const authUser = account => (
 				if(res.success){
 					dispatch(setLoggedUser(res.user));
 					dispatch(filled(res.msg));
-					dispatch(push('/'));
+					dispatch(push(account.from.pathname));
 				} else {
 					dispatch(rejected(res.msg));
 				}				 				

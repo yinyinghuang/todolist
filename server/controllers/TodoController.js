@@ -11,14 +11,13 @@ module.exports = {
 		});
 	},
 	async retrieve(ctx) {
-		const {_id,userId} = ctx.request.body;
+		const {_id,userId} = ctx.request.params;
 		_id ?
 			await Todo.findById(_id,(err,todo) => {
 				ctx.body = err ? 
 					{success :false,msg:err}
 					:
 					{success:true,todo:todo}
-				console.log('------findById-------\n',todo);
 			})
 			:
 			await Todo.find({},(err,todo) => {
@@ -26,7 +25,6 @@ module.exports = {
 					{success :false,msg:err}
 					:
 					{success:true,todo:todo}
-				console.log('------find-------\n',todo);
 			});
 	},
 	async update(ctx) {

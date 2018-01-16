@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import { Redirect,Route,Link,Switch } from 'react-router-dom';
-import fetch from 'isomorphic-fetch';
+import { Redirect,Route,Switch,Link } from 'react-router-dom';
 
 
 import AddTodo from './AddTodo';
@@ -11,10 +9,10 @@ import ListTodo from './ListTodo';
 
 class TodoList extends Component {
   render() {
-    const {user} = this.props;
+    const {user,location} = this.props;
     return user ?
       <div>
-        Todo   
+        Todo
         <Switch>
           <Route path="/add" component={AddTodo} />
           <Route path="/view/:id" component={ViewTodo} />
@@ -23,13 +21,16 @@ class TodoList extends Component {
       </div>
 
       :
-      <Redirect to="/user/login"/>;
+      <Redirect to={{
+        pathname:"/user/login",
+        state:{from:location}
+      }}/>;
   }
 }
 
 const mapStateToProps = (state,ownProps) => {
   return {
-    user:state.authUserReducer.user
+    user:state.authUser.user
   }
 };
 
