@@ -25,17 +25,6 @@ class AddTodo extends Component{
 										<input type="text" className="form-control" id="inputTask" name="task"/>
 									</div>
 								</div>
-								<div className="form-group">
-									 <label htmlFor="inputDeadline" className="col-sm-2 control-label">Deadline</label>
-									<div className="col-sm-10">
-										<input type="text" className="form-control" id="inputDeadline" name="deadline"/>
-									</div>
-								</div>
-								<div className="form-group">
-									<div className="col-sm-offset-2 col-sm-10">
-										 <button type="submit" className="btn btn-default">Sign in</button>
-									</div>
-								</div>
 							</form>
 						</div>
 					</div>
