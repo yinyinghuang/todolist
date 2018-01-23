@@ -22,7 +22,7 @@ const createTodo = (todo) => (dispatch,getState) => {
 		.then(res => {
 			if(res.success){  
 				dispatch(filled('The item has been saved'));
-				dispatch(push('/todo'));
+				dispatch(getListTodo(userId));
 			}else {
 				dispatch(rejected(res.msg));
 			}

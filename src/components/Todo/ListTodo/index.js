@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import actions from '../../../actions/todoListAction';
+import AddTodo from '../AddTodo';
 
 class ListTodo extends Component {
 
@@ -17,17 +18,15 @@ class ListTodo extends Component {
 		const {todo,pendding} = this.props;
 		return (
 			<div>
-				<div><Link to="/add">add new task</Link></div>
+				<AddTodo />
 				{
-					pendding ? 
-						<div>loading data...</div>
+					
+					todo ?
+						todo.map(item => (
+							<div key={item._id}>{item.task}</div>
+						))
 						:
-						todo ?
-							todo.map(item => (
-								<div key={item._id}>{item.task}</div>
-							))
-							:
-							<div>no task</div>
+						<div>no task</div>
 				}
 			</div>
 		)

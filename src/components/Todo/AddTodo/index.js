@@ -7,9 +7,10 @@ class AddTodo extends Component{
 	handleSubmit(e){
 		e.preventDefault();
 
-		const {task,deadline} = e.target;
+		const {task} = e.target;
 		const {add} = this.props;
-		add({task:task.value,deadline:deadline.value});
+		add({task:task.value});
+		e.target.task.value=null;
 	}
 
 	render(){
@@ -26,14 +27,8 @@ class AddTodo extends Component{
 									</div>
 								</div>
 								<div className="form-group">
-									 <label htmlFor="inputDeadline" className="col-sm-2 control-label">Deadline</label>
-									<div className="col-sm-10">
-										<input type="text" className="form-control" id="inputDeadline" name="deadline"/>
-									</div>
-								</div>
-								<div className="form-group">
 									<div className="col-sm-offset-2 col-sm-10">
-										 <button type="submit" className="btn btn-default">Sign in</button>
+										 <button type="submit" className="btn btn-default">submit</button>
 									</div>
 								</div>
 							</form>

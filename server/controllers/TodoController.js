@@ -11,21 +11,14 @@ module.exports = {
 		});
 	},
 	async retrieve(ctx) {
-		const {_id,userId} = ctx.request.params;
-		_id ?
-			await Todo.findById(_id,(err,todo) => {
+		const {userId} = ctx.params;
+
+			await Todo.find({userId},(err,todo) => {
 				ctx.body = err ? 
 					{success :false,msg:err}
 					:
 					{success:true,todo:todo}
 			})
-			:
-			await Todo.find({},(err,todo) => {
-				ctx.body = err ? 
-					{success :false,msg:err}
-					:
-					{success:true,todo:todo}
-			});
 	},
 	async update(ctx) {
 		const {_id,task,deadline,category,priority,userId} = ctx.request.body;
