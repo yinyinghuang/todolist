@@ -18,7 +18,11 @@ class ListTodo extends Component {
 		const {todo,pendding} = this.props;
 		return (
 			<div>
+<<<<<<< HEAD
 				<AddTodo />
+=======
+				<AddTodo/>
+>>>>>>> 970f2439e9af51f04e4fa5fa23064b6a90c920bb
 				{
 					
 					todo ?

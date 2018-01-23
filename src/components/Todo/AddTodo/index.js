@@ -26,11 +26,14 @@ class AddTodo extends Component{
 										<input type="text" className="form-control" id="inputTask" name="task"/>
 									</div>
 								</div>
+<<<<<<< HEAD
 								<div className="form-group">
 									<div className="col-sm-offset-2 col-sm-10">
 										 <button type="submit" className="btn btn-default">submit</button>
 									</div>
 								</div>
+=======
+>>>>>>> 970f2439e9af51f04e4fa5fa23064b6a90c920bb
 							</form>
 						</div>
 					</div>

@@ -7,10 +7,6 @@ const TodoSchema = new Schema({
 		type:String,
 		require:true
 	},
-	deadline:{
-		type:Date,
-		require:true
-	},
 	class:{
 		type:String
 	},
