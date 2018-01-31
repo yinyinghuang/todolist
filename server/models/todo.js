@@ -7,15 +7,17 @@ const TodoSchema = new Schema({
 		type:String,
 		require:true
 	},
-	class:{
-		type:String
+	cate:{
+		type:String,
+		default:undefined
 	},
 	priority:{
-		type:Number
+		type:Number,
+		default:0
 	},
 	created:{
 		type:Date,
-		require:true
+		default:Date.now()
 	},
 	modifid:{
 		type:Date,
@@ -27,6 +29,9 @@ const TodoSchema = new Schema({
 	}
 });
 
-const Todo = mongoose.model('Todo', TodoSchema);
+TodoSchema.static('findByUserId', function(id,cb){
+	return this.where({userId:new mongoose.Types.ObjectId(id)}).exec(cb);
+})
 
+const Todo = mongoose.model('Todo', TodoSchema);
 module.exports = Todo;

@@ -13,7 +13,7 @@ module.exports = {
       username
     }, (err, user) => {
       if (err) {
-        throw err;
+        ctx.body = { success: false, message: err }
       }
       if (!user) {
         ctx.body = result;
