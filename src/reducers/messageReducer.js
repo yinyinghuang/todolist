@@ -1,6 +1,7 @@
 import {
 	DISMISS_MESSAGE,
-	SHOW_MESSAGE
+	SHOW_MESSAGE,
+	LOADING
 } from '../const';
 
 const initialState = {
@@ -14,9 +15,13 @@ const initialState = {
 const message = (state = initialState, action) =>{
 	switch (action.type) {
 		
+		case LOADING:
+			return Object.assign({},state,{
+				visible:false
+			});
 		case DISMISS_MESSAGE:
 			return Object.assign({},state,{
-				visible:action.visible
+				visible:true
 			});
 		case SHOW_MESSAGE:
 			return Object.assign({},state,{

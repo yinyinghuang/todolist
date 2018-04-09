@@ -1,6 +1,7 @@
 import {
 	SHOW_MESSAGE,
-	DISMISS_MESSAGE
+	DISMISS_MESSAGE,
+	LOADING
 } from '../const';
 
 const show = (msg) =>({
@@ -9,8 +10,11 @@ const show = (msg) =>({
 });
 
 const dismiss = () =>({
-	type:DISMISS_MESSAGE,
-	visible:false
+	type:DISMISS_MESSAGE
+});
+
+const loading = () =>({
+	type:LOADING
 });
 
 export default{

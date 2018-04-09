@@ -6,42 +6,48 @@ import {
 	REJECTED
 } from '../const';
 
+const {loading,show} = message;
 
-
-const pendding = () =>({
+const penddingObj = () =>({
 	type:PENDDING
 });
 
-const filled = (msg) =>({
+const filledObj = (msg) =>({
 	type:FILLED,
 	msg
 });
 
-const rejected = (errmsg) =>({
+const rejectedObj = (errmsg) =>({
 	type:REJECTED,
 	errmsg
 });
 
-const authUser = account => (
+const pendding = () => (
 	dispatch => {
-		dispatch(pendding());
+		dispatch(penddingObj());
+		dispatch(loading());
+	}
+);
 
-		fetch('/user/login',{
-			method:'post',
-			headers:{'Content-type':'application/json'},
-			body:JSON.stringify(account)
-		})
-			.then(res => res.json())
-			.then(res => {
-				if(res.success){
-					dispatch(setLoggedUser(res.user));
-					dispatch(filled(res.msg));
-					history.push(account.from.pathname);
-				} else {
-					dispatch(rejected(res.msg));
-				}				 				
-			})
-			.catch(e => dispatch(rejected(e)))
+const filled = (msg) => (
+	dispatch => {
+		dispatch(filledObj(msg));
+		dispatch(show({
+			type:success,
+			visible:true,
+			...msg
+		}));
+	}
+);
+
+const rejected = (errmsg) => (
+	dispatch => {
+		dispatch(rejectedObj(errmsg));
+		dispatch(show({
+			type:error,
+			visible:true,
+			...errmsg
+		}));
 	}
 );
 
