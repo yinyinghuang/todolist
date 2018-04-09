@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
+
 
 import actions from '../../../actions/authUserAction';
 
@@ -14,38 +16,17 @@ class LoginLayout extends Component{
 
 	render(){
 		return (
-			<div className="container">
-				<div className="row clearfix">
-					<div className="col-md-12 column">
-						<form className="form-horizontal" role="form"  onSubmit={this.handleSubmit.bind(this)}>
-							<div className="form-group">
-								 <label htmlFor="inputUsername" className="col-sm-2 control-label">Username</label>
-								<div className="col-sm-10">
-									<input type="text" className="form-control" id="inputUsername" name="username"/>
-								</div>
-							</div>
-							<div className="form-group">
-								 <label htmlFor="inputPassword" className="col-sm-2 control-label">Password</label>
-								<div className="col-sm-10">
-									<input type="password" className="form-control" id="inputPassword" name="password"/>
-								</div>
-							</div>
-							<div className="form-group">
-								<div className="col-sm-offset-2 col-sm-10">
-									<div className="checkbox">
-										 <label><input type="checkbox" />Remember me</label>
-									</div>
-								</div>
-							</div>
-							<div className="form-group">
-								<div className="col-sm-offset-2 col-sm-10">
-									 <button type="submit" className="btn btn-default">Sign in</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+			<Form onSubmit={this.handleSubmit.bind(this)}>
+		    <Form.Field>
+		      <label>Username</label>
+		      <input placeholder='Username' name='username'/>
+		    </Form.Field>
+		    <Form.Field>
+		      <label>Password</label>
+		      <input placeholder='Password' name='password'/>
+		    </Form.Field>
+		    <Button type='submit'>Submit</Button>
+		  </Form>
 		);
 	}
 }

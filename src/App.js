@@ -1,14 +1,16 @@
 import React from 'react';
-import { Route,Switch } from 'react-router-dom';
+import { Router,Route,Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import {ConnectedRouter} from 'react-router-redux';
+// import {ConnectedRouter} from 'react-router-redux';
 
 
 import store from './store';
 import TodoList from './components/Todo';
 import User from './components/User';
+import MessageSection from './components/MessageSection';
 import logo from './logo.svg';
 import './App.css';
+import history from './history';
 
 const App = (props) => (  
     <Provider store={store}>
@@ -20,12 +22,13 @@ const App = (props) => (
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <ConnectedRouter history={store.history}>
+        <Router history={history}>
           <Switch>
             <Route path='/user' component={User} />
             <Route path='/' component={TodoList}/>
           </Switch>
-        </ConnectedRouter>
+        </Router>
+        <MessageSection/>
       </div>
     </Provider>
 )

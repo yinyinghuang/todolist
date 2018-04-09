@@ -7,24 +7,15 @@ module.exports = {
 		const {task,userId} = ctx.request.body;
 
 		const todoEntity = new Todo({task,userId});	next();  
-		const res = await todoEntity.save((err) => {
-
-			ctx.body = err ? 
-				{success :false,msg:err}
-				:
-				{success:true}
-			console.log('------------save--ctx.body-------',ctx.body)
-		});
-		// const res = await Todo.create({task,userId},(err) => {
-
-		// 	ctx.body = err ? 
-		// 		{success :false,msg:err}
-		// 		:
-		// 		{success:true}
-		// 	console.log('------------create---ctx.body-----',ctx.body)
-		// });
-
-		console.log('------------res---------',res)
+		await todoEntity
+			.save()
+			.then((todo) => {
+				ctx.body = todo ? 
+					{success :true}
+					:
+					{success:false,msg:todo}
+			})
+			.catch(err => ({success :false,msg:err}));
 		
 	},
 	async retrieve(ctx) {
@@ -56,6 +47,5 @@ module.exports = {
 				:
 				{success:true}
 		});
-	},
-
+	}
 };

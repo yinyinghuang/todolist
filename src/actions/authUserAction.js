@@ -1,4 +1,4 @@
-import {push} from 'react-router-redux';
+import history from '../history';
 import httpState from './httpStateAction';
 
 import {
@@ -26,7 +26,7 @@ const authUser = account => (
 				if(res.success){
 					dispatch(setLoggedUser(res.user));
 					dispatch(filled(res.msg));
-					dispatch(push(account.from.pathname));
+					history.push(account.from.pathname);
 				} else {
 					dispatch(rejected(res.msg));
 				}				 				

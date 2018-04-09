@@ -1,5 +1,4 @@
 import React from 'react';
-import {setLoggedUser} from '../../../util/authUtil';
 
 const LogoutLayout = props => {
 	return (

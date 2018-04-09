@@ -30,7 +30,11 @@ const TodoSchema = new Schema({
 });
 
 TodoSchema.static('findByUserId', function(id,cb){
-	return this.where({userId:new mongoose.Types.ObjectId(id)}).exec(cb);
+	return this.where({
+		userId:new mongoose.Types.ObjectId(id)
+	})
+	.sort({created:-1})
+	.exec(cb);
 })
 
 const Todo = mongoose.model('Todo', TodoSchema);
