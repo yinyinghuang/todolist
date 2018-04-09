@@ -4,7 +4,7 @@ const LogoutLayout = props => {
 	return (
 		<form >
 			<div>
-				<button onClick={() => setLoggedUser(null)}>Logout</button>
+				<button>Logout</button>
 			</div>
 		</form>
 	);

@@ -33,7 +33,7 @@ const filled = (msg) => (
 	dispatch => {
 		dispatch(filledObj(msg));
 		dispatch(show({
-			type:success,
+			type:'success',
 			visible:true,
 			...msg
 		}));
@@ -44,7 +44,7 @@ const rejected = (errmsg) => (
 	dispatch => {
 		dispatch(rejectedObj(errmsg));
 		dispatch(show({
-			type:error,
+			type:'error',
 			visible:true,
 			...errmsg
 		}));
@@ -52,7 +52,7 @@ const rejected = (errmsg) => (
 );
 
 
-export default{
+export default{  
 	pendding,
 	filled,
 	rejected
