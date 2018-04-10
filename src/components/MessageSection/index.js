@@ -1,24 +1,50 @@
 import React, { Component } from 'react'
 import { Message } from 'semantic-ui-react'
+import {connect} from 'react-redux';
+
+import actions from '../../actions/messageAction';
 
 class MessageSection extends Component {
-  state = { visible: true }
 
   handleDismiss = () => {
-    this.setState({ visible: false })
+    const dismiss = this.props.dismiss;
+    dismiss();
   }
 
   render() {
-    if (this.state.visible) {
-      return (
+      const {header,content,list,error,success,visible} = this.props;
+      return visible&&header ? (
         <Message
           onDismiss={this.handleDismiss}
-          header='Welcome back!'
-          content='This is a special notification which you can dismiss.'
-        />
-      )
-    }
+          error = {error}
+          success = {success}
+          header={header}
+          content={content}
+          list={list}
+          onClick={this.handleDismiss}
+        />):null;
   }
 }
 
-export default MessageSection
+const mapStateToProps = (state) => {
+  const {message} = state;
+
+  return {
+    visible:message.visible,
+    error:message.error,
+    success:message.success,
+    header:message.header,
+    content:message.content,
+    list:message.list
+  }
+
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  dismiss:() => dispatch(actions.dismiss())
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MessageSection)

@@ -6,7 +6,8 @@ import {
 
 const initialState = {
 	visible:false,
-	type:null,
+	error:false,
+	success:false,
 	header:null,
 	content:null,
 	list:null
@@ -21,12 +22,13 @@ const message = (state = initialState, action) =>{
 			});
 		case DISMISS_MESSAGE:
 			return Object.assign({},state,{
-				visible:true
+				visible:false
 			});
 		case SHOW_MESSAGE:
 			return Object.assign({},state,{
-				visible:action.visible
-				type:action.type,
+				visible:true,
+				error:action.error,
+				success:action.success,
 				header:action.header,
 				content:action.content,
 				list:action.list

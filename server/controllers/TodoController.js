@@ -11,9 +11,15 @@ module.exports = {
 			.save()
 			.then((todo) => {
 				ctx.body = todo ? 
-					{success :true}
+					{success :true,msg:{
+						success:true,
+						header:'The item has been saved'
+					}}
 					:
-					{success:false,msg:todo}
+					{success:false,msg:{
+						error:true,
+						header:'failed'
+					}}
 			})
 			.catch(err => ({success :false,msg:err}));
 		

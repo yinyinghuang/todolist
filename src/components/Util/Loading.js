@@ -9,7 +9,7 @@ class MessageSection extends Component {
   }
 
   render() {
-      return true ? (
+      return this.state.loading ? (
         <Message
           onDismiss={this.handleDismiss}
           header='Welcome back!'

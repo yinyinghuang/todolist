@@ -4,7 +4,10 @@ module.exports = {
     async signIn(ctx, next) {
         let result = {
             success: false,
-            msg: '用户不存在'
+            msg: {
+                error:true,
+                header:'username does not exsit'
+            }
         };
         //从请求体中获得参数``
         const { username, password } = ctx.request.body;
@@ -20,9 +23,13 @@ module.exports = {
             } else {console.log(user.password);
                 //判断密码是否正确
                 if (password === user.password) {
-                    ctx.body = { success: true, msg: '登入成功', user: { username, password, _id: user._id } }
+                    ctx.body = { success: true, msg: {
+                        header:'success'
+                    }, user: { username, password, _id: user._id } }
                 } else {
-                    ctx.body = { success: false, msg: '密码错误' }
+                    ctx.body = { success: false, msg: {
+                        header:'wrong password'
+                    } }
                 }
             }
         });

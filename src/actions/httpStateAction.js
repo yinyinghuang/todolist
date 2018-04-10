@@ -25,15 +25,16 @@ const rejectedObj = (errmsg) =>({
 const pendding = () => (
 	dispatch => {
 		dispatch(penddingObj());
-		dispatch(loading());
+		// dispatch(loading());
 	}
 );
 
-const filled = (msg) => (
+const filled = (msg) => (		
 	dispatch => {
 		dispatch(filledObj(msg));
 		dispatch(show({
-			type:'success',
+			error:false,
+			success:true,
 			visible:true,
 			...msg
 		}));
@@ -44,7 +45,8 @@ const rejected = (errmsg) => (
 	dispatch => {
 		dispatch(rejectedObj(errmsg));
 		dispatch(show({
-			type:'error',
+			error:true,
+			success:false,
 			visible:true,
 			...errmsg
 		}));

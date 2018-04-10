@@ -1,4 +1,4 @@
-import {push} from 'react-router-redux';
+
 import httpState from './httpStateAction';
 
 import {
@@ -21,7 +21,7 @@ const createTodo = (todo) => (dispatch,getState) => {
 		.then(res => res.json())
 		.then(res => {
 			if(res.success){  
-				dispatch(filled('The item has been saved'));
+				dispatch(filled(res.msg));
 				dispatch(getListTodo(userId));
 			}else {
 				dispatch(rejected(res.msg));
@@ -58,7 +58,7 @@ const getListTodo = (userId) => async(dispatch) => {
 		.then(res => res.json())
 		.then(res => {
 			if(res.success){  
-				dispatch(filled(''));
+				// dispatch(filled(''));
 				dispatch(retrieveTodo(res.todo));
 			}else {
 				dispatch(rejected(res.msg));

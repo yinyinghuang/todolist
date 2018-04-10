@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import { Segment,Container } from 'semantic-ui-react';
 
 import actions from '../../../actions/todoListAction';
 import AddTodo from '../AddTodo';
@@ -17,19 +18,20 @@ class ListTodo extends Component {
 
 		const {todo,pendding} = this.props;
 		return (
-			<div>
-
+			<Container>
 				<AddTodo />
+				<Segment.Group>
 				{
 					
 					todo && todo.length ?
 						todo.map(item => (
-							<div key={item._id}>{item.task}</div>
+							<Segment key={item._id}>{item.task}</Segment>
 						))
 						:
 						<div>no task</div>
 				}
-			</div>
+				</Segment.Group>
+			</Container>
 		)
 	}
 }

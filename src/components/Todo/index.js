@@ -12,7 +12,6 @@ class TodoList extends Component {
     const {user,location} = this.props;
     return user ?
       <div>
-        Todo
         <Switch>
           <Route path="/add" component={AddTodo} />
           <Route path="/view/:id" component={ViewTodo} />

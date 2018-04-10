@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { Container,Form,Input } from 'semantic-ui-react';
 
 import {connect} from 'react-redux';
 import actions from '../../../actions/todoListAction';
@@ -15,29 +16,11 @@ class AddTodo extends Component{
 
 	render(){
 		return (
-			<div>
-				<div className="container">
-					<div className="row clearfix">
-						<div className="col-md-12 column">
-							<form className="form-horizontal" role="form"  onSubmit={this.handleSubmit.bind(this)}>
-								<div className="form-group">
-									 <label htmlFor="inputTask" className="col-sm-2 control-label">Task</label>
-									<div className="col-sm-10">
-										<input type="text" className="form-control" id="inputTask" name="task"/>
-									</div>
-								</div>
-
-								<div className="form-group">
-									<div className="col-sm-offset-2 col-sm-10">
-										 <button type="submit" className="btn btn-default">submit</button>
-									</div>
-								</div>
-
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+				<Form onSubmit={this.handleSubmit.bind(this)}>
+			    <Form.Field>
+			      <Input placeholder='Enter you todo...' name='task'/>
+			    </Form.Field>
+			  </Form>
 		)
 	}
 }

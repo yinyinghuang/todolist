@@ -19,5 +19,6 @@ const loading = () =>({
 
 export default{
 	show,
-	dismiss
+	dismiss,
+	loading
 }
