@@ -2,7 +2,8 @@ import history from '../history';
 import httpState from './httpStateAction';
 
 import {
-	SET_LOGGED_USER
+	SET_LOGGED_USER,
+	JWT_TOKEN
 } from '../const';
 
 const {pendding,filled,rejected} = httpState;
@@ -23,8 +24,9 @@ const authUser = account => (
 		})
 			.then(res => res.json())
 			.then(res => {
-				if(res.success){
+				if(res.success === true){
 					dispatch(setLoggedUser(res.user));
+					localStorage.setItem(JWT_TOKEN,res.token);
 					dispatch(filled(res.msg));
 					history.push(account.from.pathname);
 				} else {

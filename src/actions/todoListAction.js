@@ -6,16 +6,22 @@ import {
 	RETRIEVETODO,
 	UPDATETODO,
 	DELETETODO,
+	JWT_TOKEN
 } from '../const';
 
 const {pendding,filled,rejected} = httpState;
+const token = localStorage.getItem(JWT_TOKEN);
+const headers = {
+			'Content-type':'application/json',
+			'Authorization':'Bearer ' + token
+		}
 
 const createTodo = (todo) => (dispatch,getState) => {
 	dispatch(pendding());
 	const userId = getState().authUser.user._id;
 	fetch('/todo/create',{
 		method:'post',
-		headers:{'Content-type':'application/json'},
+		headers,
 		body:JSON.stringify({...todo,userId})
 	})
 		.then(res => res.json())
@@ -53,7 +59,8 @@ const getListTodo = (userId) => async(dispatch) => {
 	
 	await fetch(`/todo/retrieve/${userId}`,{
 		method:'get',
-		accpets:'json'
+		accpets:'json',
+		headers
 	})
 		.then(res => res.json())
 		.then(res => {

@@ -1,12 +1,16 @@
-const User = require('../models/User');
+const
+    jwt = require('jsonwebtoken'),
+    User = require('../models/User'),
+    config = require('../config');
+
 
 module.exports = {
     async signIn(ctx, next) {
         let result = {
             success: false,
             msg: {
-                error:true,
-                header:'username does not exsit'
+                error: true,
+                header: '用户不存在'
             }
         };
         //从请求体中获得参数``
@@ -20,20 +24,32 @@ module.exports = {
             }
             if (!user) {
                 ctx.body = result;
-            } else {console.log(user.password);
+            } else {
+                console.log(user.password);
                 //判断密码是否正确
                 if (password === user.password) {
-                    ctx.body = { success: true, msg: {
-                        header:'success'
-                    }, user: { username, password, _id: user._id } }
+                    const token = jwt.sign({
+                        username: username,
+                        id: user._id
+                    }, config.secret, { expiresIn: '30s' });
+                    ctx.body = {
+                        success: true,
+                        msg: {
+                            header: '登录成功'
+                        },
+                        user: { username, password, _id: user._id },
+                        token
+                    }
                 } else {
-                    ctx.body = { success: false, msg: {
-                        header:'wrong password'
-                    } }
+                    ctx.body = {
+                        success: false,
+                        msg: {
+                            header: '密码错误'
+                        }
+                    }
                 }
             }
         });
         next();
     }
 };
-

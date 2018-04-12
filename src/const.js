@@ -15,3 +15,8 @@ export const DISMISS_MESSAGE = 'DISMISS_MESSAGE';
 export const LOADING = 'LOADING';
 
 
+export const JWT_TOKEN = 'UNA_FULL_STACK_TOKEN';
+
+
+
+
