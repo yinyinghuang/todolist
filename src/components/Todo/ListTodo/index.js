@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import { Segment,Container } from 'semantic-ui-react';
 
 import actions from '../../../actions/todoListAction';
@@ -16,7 +15,7 @@ class ListTodo extends Component {
 
 	render(){
 
-		const {todo,pendding} = this.props;
+		const {todo} = this.props;
 		return (
 			<Container>
 				<AddTodo />

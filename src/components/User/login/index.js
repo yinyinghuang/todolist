@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import { Button, Container, Form } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Button, Form } from 'semantic-ui-react';
 
 
 import actions from '../../../actions/authUserAction';
@@ -11,6 +11,7 @@ class LoginLayout extends Component{
 		const {username,password} = e.target;
 		const {location,authUser} = this.props;
 		const {from} = location.state || {from :{pathname:'/'}};
+		
 		authUser({username:username.value,password:password.value,from:from});
 	}
 

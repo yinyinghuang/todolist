@@ -1,3 +1,4 @@
 module.exports = {
-	secret:'jwt'
+	secret:'jwt',
+	login_url:'/user/login'
 }

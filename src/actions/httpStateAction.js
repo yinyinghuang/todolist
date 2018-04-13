@@ -1,3 +1,5 @@
+
+import history from '../history';
 import message from './messageAction';
 
 import {
@@ -6,7 +8,7 @@ import {
 	REJECTED
 } from '../const';
 
-const {loading,show} = message;
+const {loading,show,dismiss} = message;
 
 const penddingObj = () =>({
 	type:PENDDING
@@ -41,15 +43,22 @@ const filled = (msg) => (
 	}
 );
 
-const rejected = (errmsg) => (
+const rejected = (msg) => (
 	dispatch => {
-		dispatch(rejectedObj(errmsg));
+		dispatch(rejectedObj(msg));
 		dispatch(show({
 			error:true,
 			success:false,
 			visible:true,
-			...errmsg
+			...msg
 		}));
+		if (msg.redirect_url) {
+			setTimeout(function function_name(argument) {
+				history.push(msg.redirect_url);
+				dispatch(dismiss());
+			},2000)
+		}
+		return false;
 	}
 );
 

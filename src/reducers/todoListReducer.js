@@ -1,8 +1,8 @@
 import {
 	CREATETODO,
-	RETRIEVETODO,
+	RETRIEVETODO,/*
 	UPDATETODO,
-	DELETETODO,
+	DELETETODO,*/
 } from '../const';
 
 const initialState = {

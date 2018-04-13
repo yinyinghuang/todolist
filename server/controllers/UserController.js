@@ -30,8 +30,8 @@ module.exports = {
                 if (password === user.password) {
                     const token = jwt.sign({
                         username: username,
-                        id: user._id
-                    }, config.secret, { expiresIn: '30s' });
+                        _id: user._id
+                    }, config.secret, { expiresIn: 30000 });
                     ctx.body = {
                         success: true,
                         msg: {

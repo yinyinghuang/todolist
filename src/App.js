@@ -13,9 +13,9 @@ import history from './history';
 const App = (props) => (  
     <Provider store={store}>
       <Segment>
-        <Header as="h2" textAlign='center'>
+        <Header as="h2" textalign='center'>
           Welcome to Reac11
-          <Header.Subheader textAlign='center'>
+          <Header.Subheader textalign='center'>
             To get started, edit <code>src/App.js</code> and save to reload.
           </Header.Subheader>
         </Header>
