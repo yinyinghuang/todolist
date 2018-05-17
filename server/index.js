@@ -20,7 +20,7 @@ app
     //检测token是否正确，若存在且正确，将用户信息存放在ctx.user；
     //若存在不正确，立即返回错误信息
     .use(tokenError().unless({
-        path: [/^\/user\/login/]
+        path: [/^\/user\/login/,/^\/user\/verify/]
     }))
     .use(static(path.resolve(__dirname, 'build')))
     //检验
@@ -31,7 +31,7 @@ app
     .use(async(ctx, next) => {
         console.log(`\n\n\n${ctx.method} ${ctx.url} ${new Date().toLocaleString()}`);
         next();
-        console.log(`----------------${new Date().toLocaleString()}------------\n`, ctx.body);
+        console.log(`----------------${new Date().toLocaleString()}------------\n`, ctx.url);
     });
 
 (async() => {

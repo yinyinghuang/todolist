@@ -22,6 +22,7 @@ class MessageSection extends Component {
           content={content}
           list={list}
           onClick={this.handleDismiss}
+          style={{position:'absolute',top:0,right:'1em'}}
         />):null;
   }
 }

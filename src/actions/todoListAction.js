@@ -65,7 +65,7 @@ const getListTodo = (userId) => async(dispatch) => {
 		'Content-type':'application/json',
 		'Authorization':'Bearer ' + token
 	}
-	await fetch(`/todo/retrieve/${userId}`,{
+	await fetch(`/todo/retrieve`,{
 		method:'get',
 		accpets:'json',
 		headers

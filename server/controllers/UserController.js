@@ -31,7 +31,7 @@ module.exports = {
                     const token = jwt.sign({
                         username: username,
                         _id: user._id
-                    }, config.secret, { expiresIn: 30000 });
+                    }, config.secret, { expiresIn: 60*60*24 });
                     ctx.body = {
                         success: true,
                         msg: {
@@ -50,6 +50,47 @@ module.exports = {
                 }
             }
         });
+        next();
+    },
+    async verify(ctx, next) {
+        const token = ctx.header.authorization;
+        if (token) {
+            try {
+                const payload = await jwt.verify(token.split(' ')[1], config.secret);
+                ctx.body = {
+                    success:true,
+                    user:{
+                        username: payload.username,
+                        _id: payload._id
+                    }
+                }
+            } catch (err) {
+                let res = { success: false, msg: {} },
+                    msg = {};
+                switch (err.name) {
+                    case 'JsonWebTokenError':
+                        msg.header = 'token格式错误，请重新登录';
+                        msg.redirect_url = config.login_url;
+                        break;
+                    case 'NotBeforeError':
+                        msg.header = 'token生效时间：' + err.date + '请稍后重试';
+                        msg.redirect_url = ctx.url;
+                        break;
+                    case 'TokenExpiredError':
+                        msg.header = 'token已过期，请重新登录';
+                        msg.redirect_url = config.login_url;
+                        break;
+                }
+                res.msg = msg;
+                ctx.body = res;
+
+            }
+        } else {
+            ctx.body = {
+                success: false,
+                msg: { header: '请先登录' }
+            }
+        }
         next();
     }
 };

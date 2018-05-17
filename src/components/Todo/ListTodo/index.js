@@ -9,8 +9,8 @@ import AddTodo from '../AddTodo';
 class ListTodo extends Component {
 
 	componentDidMount() {
-	  const {getListTodo,user} = this.props;
-	  getListTodo(user._id);
+	  const {getListTodo} = this.props;
+	  getListTodo();
 	}
 
 	render(){
@@ -27,7 +27,7 @@ class ListTodo extends Component {
 							<Segment key={item._id}>{item.task}</Segment>
 						))
 						:
-						<div>no task</div>
+						<div>加载中...</div>
 				}
 				</Segment.Group>
 			</Container>

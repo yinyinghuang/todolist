@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form,Loader } from 'semantic-ui-react';
 
 
 import actions from '../../../actions/authUserAction';
+import {JWT_TOKEN} from '../../../const';
 
 class LoginLayout extends Component{
+	componentWillMount(){
+		const token = localStorage.getItem(JWT_TOKEN);
+		if (token)  this._res = this.props.verify(token);
+	}
+
 	handleSubmit(e){
 		e.preventDefault();
 		const {username,password} = e.target;
@@ -16,23 +22,30 @@ class LoginLayout extends Component{
 	}
 
 	render(){
-		return (
+		if (this._res === false) {
+			return (
 				<Form onSubmit={this.handleSubmit.bind(this)}>
-			    <Form.Field>
-			      <label>Username</label>
-			      <input placeholder='Username' name='username'/>
-			    </Form.Field>
-			    <Form.Field>
-			      <label>Password</label>
-			      <input placeholder='Password' name='password'/>
-			    </Form.Field>
-			    <Button type='submit'>Submit</Button>
-			  </Form>
-		);
+				    <Form.Field>
+				      <label>Username</label>
+				      <input placeholder='Username' name='username'/>
+				    </Form.Field>
+				    <Form.Field>
+				      <label>Password</label>
+				      <input placeholder='Password' name='password'/>
+				    </Form.Field>
+				    <Button type='submit'>Submit</Button>
+			    </Form>
+			);
+		} else{
+			return (
+				<Loader/>
+			);
+		}
 	}
 }
 
 const mapDispatchToProps = dispatch => ({
-	authUser:(account) => dispatch(actions.authUser(account))
+	authUser:(account) => dispatch(actions.authUser(account)),
+	verify:(token) => dispatch(actions.verify(token))
 })
 export default connect(null,mapDispatchToProps)( LoginLayout);
