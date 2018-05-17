@@ -22,7 +22,7 @@ class LoginLayout extends Component{
 	}
 
 	render(){
-		if (this._res === false) {
+		if (!this._res) {
 			return (
 				<Form onSubmit={this.handleSubmit.bind(this)}>
 				    <Form.Field>

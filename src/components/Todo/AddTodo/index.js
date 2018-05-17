@@ -21,18 +21,11 @@ class AddTodo extends Component{
 		e.target.task.value=null;
 	}
 
-	handleChange(e){
-		const target = e.target;
-		this.setState({
-			value:target.value.toUpperCase()
-		})
-	}
-
 	render(){
 		return (
 				<Form onSubmit={this.handleSubmit.bind(this)}>
 			    <Form.Field>
-			      <Input placeholder='Enter you todo...' name='task' value={this.state.value} onChange={this.handleChange}/>
+			      <Input placeholder='Enter you todo...' name='task' value={this.state.value}/>
 			    </Form.Field>
 			  </Form>
 		)
