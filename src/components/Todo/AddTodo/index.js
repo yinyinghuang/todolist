@@ -23,11 +23,11 @@ class AddTodo extends Component{
 
 	render(){
 		return (
-				<Form onSubmit={this.handleSubmit.bind(this)}>
+			<Form onSubmit={this.handleSubmit.bind(this)}>
 			    <Form.Field>
-			      <Input placeholder='Enter you todo...' name='task' value={this.state.value}/>
+			      <Input placeholder='Enter you todo...' name='task'/>
 			    </Form.Field>
-			  </Form>
+			</Form>
 		)
 	}
 }

@@ -13,6 +13,7 @@
     "koa-router": "^7.3.0",
     "koa-static": "^4.0.2",
     "mongoose": "^4.13.9",
+    "nodemon": "^1.18.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
