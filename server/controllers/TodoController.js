@@ -1,3 +1,4 @@
+let res = require('./ResultFormat');
 const Todo = require('../models/Todo');
 const ObjectId = require('mongoose').Types.ObjectId;
 
@@ -7,7 +8,7 @@ module.exports = {
         const { task} = ctx.request.body;
         const userId = ctx.user;
         const todoEntity = new Todo({ task, userId });
-        next();
+        
         await todoEntity
             .save()
             .then((todo) => {
