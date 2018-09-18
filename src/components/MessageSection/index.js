@@ -12,6 +12,7 @@ class MessageSection extends Component {
   }
 
   render() {
+    
       const {header,content,list,error,success,visible} = this.props;
       return visible&&header ? (
         <Message
