@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 
-import todoListAction from '../../../actions/todoListAction';
+import todoListAction from '../../../store/actions/todoListAction';
 
 class ViewTodo extends Component {
 

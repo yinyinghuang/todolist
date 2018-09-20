@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { Segment,Container } from 'semantic-ui-react';
 
-import actions from '../../../actions/todoListAction';
+import actions from '../../../store/actions/todoListAction';
 import AddTodo from '../AddTodo';
 
 class ListTodo extends Component {

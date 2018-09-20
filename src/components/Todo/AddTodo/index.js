@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { Form,Input } from 'semantic-ui-react';
 
 import {connect} from 'react-redux';
-import actions from '../../../actions/todoListAction';
+import actions from '../../../store/actions/todoListAction';
 
 class AddTodo extends Component{
 	constructor(props){

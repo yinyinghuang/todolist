@@ -1,13 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import 'semantic-ui-css/semantic.min.css';
+import {render,hydrate} from 'react-dom';
 
-import App from './App';
+import history from './history';
+import app from './app/index'
+
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(
-	<App/>, 
-	document.getElementById('root')
-);
+const {createApp,configureStore} = app;
+const initialState = window && window.__INITIAL_STATE__;
+let store = configureStore(initialState)
+const renderApp = () => {
+	let application = createApp({store,history});
+	hydrate(application,document.getElementById('root'))
+}
+
+renderApp();
+ 
 registerServiceWorker();

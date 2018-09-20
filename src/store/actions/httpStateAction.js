@@ -1,5 +1,5 @@
 
-import history from '../history';
+import history from '../../history';
 import message from './messageAction';
 
 import {

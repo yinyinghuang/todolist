@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Form,Loader } from 'semantic-ui-react';
 
 
-import actions from '../../../actions/authUserAction';
+import actions from '../../../store/actions/authUserAction';
 import {JWT_TOKEN} from '../../../const';
 
 class LoginLayout extends Component{
