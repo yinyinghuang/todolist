@@ -1,15 +1,17 @@
-import React from 'react';
-import {renderToString} from 'react-dom/server';
-import createHistory from 'history/createMemoryHistory'
-import { getBundles } from 'react-loadable/webpack';
-import stats from '../dist/react-loadable.json';
-import Helmet from 'react-helmet';
-import {matchPath} from 'react-router-dom';
+const React = require('react');
+const {renderToString} = require('react-dom/server');
+const createHistory = require('history/createMemoryHistory')
+const { getBundles } = require('react-loadable/webpack');
+// const stats = require'../dist/react-loadable.json';
+const Helmet = require('react-helmet');
+const {matchPath} = require('react-router-dom');
 
-import { matchRoutes } from 'react-router-config';
-import client from '../src/app/index.js';
-import path from 'path';
-import fs from 'fs'
+const { matchRoutes } = require('react-router-config');
+const client = require('../../src/app/index.js');
+const path = require('path');
+const fs = require('fs');
+
+
 let configureStore=client.configureStore;
 let createApp=client.createApp;
 let routesConfig=client.routesConfig;
@@ -18,7 +20,7 @@ const createStore=(configureStore)=>{
   let store=configureStore()
   return store;
 }
-
+const stats = null;
 const createTags=(modules)=>{
   let bundles = getBundles(stats, modules);
   let scriptfiles = bundles.filter(bundle => bundle.file.endsWith('.js'));
@@ -47,7 +49,7 @@ const getMatch=(routesArray, url)=>{
 const makeup=(ctx,store,createApp,html)=>{
   let initState=store.getState();
   let history=createHistory({initialEntries:[ctx.req.url]});
-
+  console.log('----------------',history);
   let modules=[];
 
   let rootString= renderToString(createApp({store,history,modules}));
@@ -68,7 +70,7 @@ const makeup=(ctx,store,createApp,html)=>{
 
 
 const clientRouter=async(ctx,next)=>{
-  let html=fs.readFileSync(path.join(path.resolve(__dirname,'../dist'),'index.html'),'utf-8');
+  let html=fs.readFileSync(path.join(path.resolve(__dirname,'../../public'),'index.html'),'utf-8');
   let store=createStore(configureStore);
 
   let branch=matchRoutes(routesConfig,ctx.req.url)
@@ -85,4 +87,4 @@ const clientRouter=async(ctx,next)=>{
   await next()
 }
 
-export default clientRouter;
+module.exports = clientRouter;

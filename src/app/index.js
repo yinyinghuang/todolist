@@ -1,6 +1,6 @@
-import configureStore from './configureStore'
+import configureStore from '../store/configureStore'
 import createApp from './createApp'
-import routersConfig from './router/routes'
+import routersConfig from '../router/routes'
 
 
 export default {

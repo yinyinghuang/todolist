@@ -1,3 +1,10 @@
+require('./ignore.js')();
+// require('babel-polyfill');
+require('babel-register')({
+  presets: ['env', 'react'/*, 'stage-0'*/],
+  // plugins: ["react-loadable/babel",'syntax-dynamic-import',"dynamic-import-node"]
+});
+
 const
     Koa = require('koa'),
     static = require('koa-static'),
@@ -10,6 +17,7 @@ const
     config = require('./config'),
     router = require('./routers'),
     tokenError = require('./middlewares/tokenError'),
+    clientRouter = require('./middlewares/clientRouter'),
     app = new Koa();
 
 mongoose.Promise = global.Promise;
@@ -23,6 +31,7 @@ app
         path: [/^\/user\/login/,/^\/user\/verify/]
     }))
     .use(static(path.resolve(__dirname, 'build')))
+    // .use(clientRouter)
     //检验
     // .use(jwtKoa({ secret: config.secret,debug:true }).unless({
     //     path: [/^\/user\/login/]

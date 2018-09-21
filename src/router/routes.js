@@ -1,11 +1,11 @@
-import TodoList from '../../components/Todo'
-import ListTodo from '../../components/Todo/ListTodo'
-import AddTodo from '../../components/Todo/AddTodo'
-import ViewTodo from '../../components/Todo/ViewTodo'
+import TodoList from '../components/Todo'
+import ListTodo from '../components/Todo/ListTodo'
+import AddTodo from '../components/Todo/AddTodo'
+import ViewTodo from '../components/Todo/ViewTodo'
 
-import User from '../../components/User'
-import Login from '../../components/User/Login'
-import Logout from '../../components/User/Logout'
+import User from '../components/User'
+import Login from '../components/User/Login'
+import Logout from '../components/User/Logout'
 
 
 const routersConfig = [{
