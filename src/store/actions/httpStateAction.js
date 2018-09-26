@@ -1,7 +1,6 @@
+import {push} from 'react-router-redux'
 
-import history from '../../history';
 import message from './messageAction';
-
 import {
 	PENDDING,
 	FILLED,
@@ -54,7 +53,7 @@ const rejected = (msg) => (
 		}));
 		if (msg.redirect_url) {
 			setTimeout(function function_name(argument) {
-				history.push(msg.redirect_url);
+				push(msg.redirect_url);
 				dispatch(dismiss());
 			},2000)
 		}

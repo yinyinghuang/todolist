@@ -1,5 +1,6 @@
-import history from '../../history';
+
 import httpState from './httpStateAction';
+import {push} from 'react-router-redux'
 
 import {
     SET_LOGGED_USER,
@@ -28,7 +29,8 @@ const authUser = account => (
                     dispatch(setLoggedUser(res.user));
                     localStorage.setItem(JWT_TOKEN, res.token);
                     dispatch(filled(res.msg));
-                    history.push(account.from.pathname);
+                    console.log(push(account.from.pathname))
+                    dispatch(push(account.from.pathname));
                 } else {
                     dispatch(rejected(res.msg));
                     return false;
@@ -50,7 +52,7 @@ const verify = (token) => (
                 if (res.success === true) {
                     dispatch(setLoggedUser(res.user));
                     dispatch(filled(res.msg));
-                    history.push('/');
+                    push('/');
                 } else {
                 	return false;
                 }

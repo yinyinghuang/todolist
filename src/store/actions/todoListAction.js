@@ -75,6 +75,7 @@ const getListTodo = (userId) => async(dispatch) => {
 			if(res.success){  
 				dispatch(retrieveTodo(res.todo));
 			}else {
+				console.log('getListTodo--failed')
 				dispatch(rejected(res.msg));
 			}
 		})

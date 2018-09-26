@@ -1,15 +1,17 @@
 import React from 'react'
-import {Route,Router} from 'react-router-dom'
 import {renderRoutes} from 'react-router-config'
+import {ConnectedRouter} from 'react-router-redux'
 
-import routes from './routes'
+import routesConfig from './routes'
 
 const Routers = ({history}) => (
-	<Router history={history}>
+	<ConnectedRouter history={history}>
+		<div>
 		{	
-			renderRoutes(routes)
+			renderRoutes(routesConfig)
 		}
-	</Router>
+		</div>
+	</ConnectedRouter>
 )
 
 export default Routers
