@@ -1,4 +1,5 @@
-const router=require('koa-router')();
+const koaRouter=require('koa-router');
+const router = new koaRouter()
 const path = require('path');
 
 const UserRouter = require('./UserRouter.js');

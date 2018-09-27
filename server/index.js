@@ -27,16 +27,16 @@ app
     .use(bodyparser())
     .use(async(ctx, next) => {
         console.log(`\n\n\n-------before-1--------${ctx.method} ${ctx.url} ${new Date().toLocaleString()}`);
-        next();
+        await next();
         console.log(`-------before-2--------${new Date().toLocaleString()}------------`, ctx.url)
     })
     //检测token是否正确，若存在且正确，将用户信息存放在ctx.user；
     //若存在不正确，立即返回错误信息
-    .use(tokenError().unless({
-        path: [/^\/user\/login/,/^\/user\/verify/]
-    }))
+    // .use(tokenError().unless({
+    //     path: [/^\/user\/login/,/^\/user\/verify/]
+    // }))
     .use(static(path.resolve(__dirname, 'build')))
-    // .use(clientRouter)
+    .use(clientRouter)
     //检验
     // .use(jwtKoa({ secret: config.secret,debug:true }).unless({
     //     path: [/^\/user\/login/]
@@ -44,7 +44,7 @@ app
     .use(router.routes())
     .use(async(ctx, next) => {
         console.log(`\n\n\n--------after--1------${ctx.method} ${ctx.url} ${new Date().toLocaleString()}`);
-        next();
+        await next();
         console.log(`--------after---2-----${new Date().toLocaleString()}------------`, ctx.url);
     });
 
@@ -54,5 +54,5 @@ app
     } catch (e) {
         console.log(e);
     }
-    app.listen(8080);
+    app.listen(3000);
 })();

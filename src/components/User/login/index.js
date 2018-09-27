@@ -8,8 +8,8 @@ import {JWT_TOKEN} from '../../../const';
 
 class LoginLayout extends Component{
 	componentWillMount(){
-		const token = localStorage.getItem(JWT_TOKEN);
-		if (token)  this._res = this.props.verify(token);
+		// const token = localStorage.getItem(JWT_TOKEN);
+		// if (token)  this._res = this.props.verify(token);
 	}
 
 	handleSubmit(e){
