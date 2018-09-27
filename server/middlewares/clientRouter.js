@@ -41,10 +41,12 @@ const prepHTML=(data,{html,head,rootString,scripts,styles,initState})=>{
 }
 
 const getMatch=(routesArray, url)=>{
-  return routesArray.some(router=>matchPath(url,{
+  return routesArray.some(router=>{
+    console.log('-------------------getMatch\n',router);
+    return matchPath(url,{
     path: router.path,
     exact: router.exact,
-  }))
+  })})
 }
 
 const makeup=(ctx,store,createApp,html)=>{

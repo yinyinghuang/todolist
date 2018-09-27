@@ -10,7 +10,7 @@ import ListTodo from './ListTodo';
 class TodoList extends Component {
   render() {
     const {user,location} = this.props;
-    const token = localStorage.getItem('UNA_FULL_STACK_TOKEN');
+    const token = true;
     return token ?
       <div>
         <Switch>

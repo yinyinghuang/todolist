@@ -27,9 +27,11 @@ const routersConfig = [{
 	component:User,
 	routes:[{
 		path:'/login',
+	  exact:true,
 		component:Login,
 	},{
 		path:'logout',
+	  exact:true,
 		component:Logout
 	}]
 }];
