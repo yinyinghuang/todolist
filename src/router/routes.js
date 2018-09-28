@@ -26,12 +26,12 @@ const routersConfig = [{
 	path:'/user',
 	component:User,
 	routes:[{
-		path:'/login',
-	  exact:true,
+		path:'/user/login',
+	    exact:true,
 		component:Login,
 	},{
-		path:'logout',
-	  exact:true,
+		path:'/user/logout',
+	    exact:true,
 		component:Logout
 	}]
 }];

@@ -3,7 +3,7 @@ import React from 'react';
 import {renderToString} from 'react-dom/server';
 import createHistory from 'history/createMemoryHistory'
 import { getBundles } from 'react-loadable/webpack';
-// import stats from '../dist/react-loadable.json';
+import assets from '../../build/asset-manifest.json';
 import Helmet from 'react-helmet';
 import {matchPath} from 'react-router-dom';
 
@@ -21,17 +21,28 @@ const createStore=(configureStore)=>{
   let store=configureStore()
   return store;
 }
-const stats = null;
-const createTags=(modules)=>{
-  let bundles = getBundles(stats, modules);
-  let scriptfiles = bundles.filter(bundle => bundle.file.endsWith('.js'));
-  let stylefiles = bundles.filter(bundle => bundle.file.endsWith('.css'));
-  let scripts=scriptfiles.map(script=>`<script src="/${script.file}"></script>`).join('\n');
-  let styles=stylefiles.map(style=>`<link href="/${style.file}" rel="stylesheet"/>`).join('\n');
+// const stats = null;
+const createTags=(bundles)=>{
+  console.log('\n-------------------createTags\n',bundles,'\n-------------------createTags\n')
+  let scriptfiles= [];
+  let stylefiles=[];
+  for(let bundle in bundles){
+    if (bundle.endsWith('.js')) {
+      scriptfiles.push(bundles[bundle])
+    } else if(bundle.endsWith('.css')) {
+      stylefiles.push(bundles[bundle])
+    }
+  }
+  // let bundles = getBundles(stats, modules);
+  // let scriptfiles = bundles.filter(bundle => bundle.file.endsWith('.js'));
+  // let stylefiles = bundles.filter(bundle => bundle.file.endsWith('.css'));
+  let scripts=scriptfiles.map(script=>`<script src="/${script}"></script>`).join('\n');
+  let styles=stylefiles.map(style=>`<link href="/${style}" rel="stylesheet"/>`).join('\n');
   return {scripts,styles}
 }
 
 const prepHTML=(data,{html,head,rootString,scripts,styles,initState})=>{
+  console.log('\n-------------------prepHTMLscripts\n',scripts,'\n-------------------prepHTMLscripts\n','\n','\n-------------------prepHTMLstyles\n',styles,'\n-------------------prepHTMLstyles\n');
   data=data.replace('<html',`<html ${html}`);
   data=data.replace('</head>',`${head} \n ${styles}</head>`);
   data=data.replace('<div id="root"></div>',`<div id="root">${rootString}</div>`);
@@ -42,7 +53,7 @@ const prepHTML=(data,{html,head,rootString,scripts,styles,initState})=>{
 
 const getMatch=(routesArray, url)=>{
   return routesArray.some(router=>{
-    console.log('-------------------getMatch\n',router);
+    // console.log('\n-------------------getMatch\n',router.path,'\n-------------------getMatch\n');
     return matchPath(url,{
     path: router.path,
     exact: router.exact,
@@ -53,7 +64,7 @@ const makeup=(ctx,store,createApp,html)=>{
   let initState=store.getState();
   let history=createHistory({initialEntries:[ctx.req.url]});
   
-  let modules=[];
+  let modules=assets;
 
   let rootString= renderToString(createApp({store,history,modules}));
 
@@ -77,6 +88,7 @@ const clientRouter=async(ctx,next)=>{
   let store=createStore(configureStore);
 
   let branch=matchRoutes(routesConfig,ctx.req.url);
+    // console.log('\n-------------------branch\n',branch,'\n-------------------branch\n');
 
   let promises = branch.map(({route,match})=>{
     return route.thunk?(route.thunk(store)):Promise.resolve(null)

@@ -19,5 +19,5 @@ renderApp()
 //   renderApp()
 // };
 
-
+console.log('\n------window.main----\n',window.main,'\n------window.main----\n')
 registerServiceWorker();

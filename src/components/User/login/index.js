@@ -12,7 +12,7 @@ class LoginLayout extends Component{
 		// if (token)  this._res = this.props.verify(token);
 	}
 
-	handleSubmit(e){
+	handleSubmit(e){console.log('------------handleSubmit')
 		e.preventDefault();
 		const {username,password} = e.target;
 		const {location,authUser} = this.props;
