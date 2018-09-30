@@ -16,7 +16,7 @@ const setLoggedUser = (userInfo) => ({
 
 const authUser = account => (
     dispatch => {
-        dispatch(pendding());
+        // dispatch(pendding());
 
         // fetch('/user/auth', {
         //         method: 'post',
@@ -41,7 +41,7 @@ const authUser = account => (
 
 const verify = (token) => (
     dispatch => {
-        dispatch(pendding());
+        // dispatch(pendding());
         // fetch('/user/verify', {
         //         method: 'post',
         //         headers: { 'Content-type': 'application/json',authorization:'Bearer ' + token }

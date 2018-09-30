@@ -33,9 +33,9 @@ app
     //检测token是否正确，若存在且正确，将用户信息存放在ctx.user；
     //若存在不正确，立即返回错误信息
     // .use(tokenError().unless({
-    //     path: [/^\/user\/login/,/^\/user\/verify/]
+    //     path: [/^\/user\/login/,/^\/user\/verify/,/^\/user\/auth/]
     // }))
-    .use(static(path.resolve(__dirname, 'build')))
+    .use(static(path.resolve(__dirname, '../build')))
     .use(clientRouter)
     //检验
     // .use(jwtKoa({ secret: config.secret,debug:true }).unless({

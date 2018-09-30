@@ -23,7 +23,7 @@ const createStore=(configureStore)=>{
 }
 // const stats = null;
 const createTags=(bundles)=>{
-  console.log('\n-------------------createTags\n',bundles,'\n-------------------createTags\n')
+  
   let scriptfiles= [];
   let stylefiles=[];
   for(let bundle in bundles){
@@ -42,7 +42,7 @@ const createTags=(bundles)=>{
 }
 
 const prepHTML=(data,{html,head,rootString,scripts,styles,initState})=>{
-  console.log('\n-------------------prepHTMLscripts\n',scripts,'\n-------------------prepHTMLscripts\n','\n','\n-------------------prepHTMLstyles\n',styles,'\n-------------------prepHTMLstyles\n');
+  
   data=data.replace('<html',`<html ${html}`);
   data=data.replace('</head>',`${head} \n ${styles}</head>`);
   data=data.replace('<div id="root"></div>',`<div id="root">${rootString}</div>`);
@@ -53,7 +53,7 @@ const prepHTML=(data,{html,head,rootString,scripts,styles,initState})=>{
 
 const getMatch=(routesArray, url)=>{
   return routesArray.some(router=>{
-    // console.log('\n-------------------getMatch\n',router.path,'\n-------------------getMatch\n');
+    
     return matchPath(url,{
     path: router.path,
     exact: router.exact,
@@ -88,7 +88,7 @@ const clientRouter=async(ctx,next)=>{
   let store=createStore(configureStore);
 
   let branch=matchRoutes(routesConfig,ctx.req.url);
-    // console.log('\n-------------------branch\n',branch,'\n-------------------branch\n');
+  
 
   let promises = branch.map(({route,match})=>{
     return route.thunk?(route.thunk(store)):Promise.resolve(null)

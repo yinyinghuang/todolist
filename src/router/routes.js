@@ -8,7 +8,7 @@ import Login from '../components/User/Login'
 import Logout from '../components/User/Logout'
 
 
-const routersConfig = [{
+const routesConfig = [{
 	path:'/',
 	exact:true,
 	component:TodoList,
@@ -35,4 +35,4 @@ const routersConfig = [{
 		component:Logout
 	}]
 }];
-export default routersConfig;
+export default routesConfig;
