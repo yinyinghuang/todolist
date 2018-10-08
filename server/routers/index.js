@@ -7,5 +7,6 @@ const TodoRouter = require('./TodoRouter.js');
 
 router.use('/',UserRouter.routes());
 router.use('/todo',TodoRouter.routes());
+router.use('/test',TodoRouter.routes());
 
 module.exports = router;

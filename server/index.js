@@ -26,9 +26,9 @@ app
     .use(cors())
     .use(bodyparser())
     .use(async(ctx, next) => {
-        console.log(`\n\n\n-------before-1--------${ctx.method} ${ctx.url} ${new Date().toLocaleString()}`);
+        // console.log(`\n\n\n-------before-1--------${ctx.body} ${ctx.url} ${new Date().toLocaleString()}`);
         await next();
-        console.log(`-------before-2--------${new Date().toLocaleString()}------------`, ctx.url)
+        console.log(`-------before-2--dd------${new Date().toLocaleString()}------------`, ctx.body,ctx.url)
     })
     //检测token是否正确，若存在且正确，将用户信息存放在ctx.user；
     //若存在不正确，立即返回错误信息
@@ -36,16 +36,16 @@ app
     //     path: [/^\/user\/login/,/^\/user\/verify/,/^\/user\/auth/]
     // }))
     .use(static(path.resolve(__dirname, '../build')))
-    .use(clientRouter)
+    // .use(clientRouter)
     //检验
     // .use(jwtKoa({ secret: config.secret,debug:true }).unless({
     //     path: [/^\/user\/login/]
     // }))
     .use(router.routes())
     .use(async(ctx, next) => {
-        console.log(`\n\n\n--------after--1------${ctx.method} ${ctx.url} ${new Date().toLocaleString()}`);
+        // console.log(`\n\n\n--------after--1------${ctx.body} ${ctx.url} ${new Date().toLocaleString()}`);
         await next();
-        console.log(`--------after---2-----${new Date().toLocaleString()}------------`, ctx.url);
+        console.log(`--------after---2-----${ctx.body}------------`, ctx.url);
     });
 
 (async() => {

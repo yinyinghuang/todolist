@@ -11,7 +11,8 @@ class App extends React.Component {
 		super(props);
 	}
 
-	componentDidMount() {console.log('\n\n\n-----------App---------\n\n\n',this.props.user)
+	componentDidMount() {
+		console.log('\n\n\n-----------App---------\n\n\n',this.props.user)
 		// if(!this.props.user){
 		// 	this.props.pushAct('/user/login');
 		// }

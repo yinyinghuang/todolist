@@ -7,6 +7,8 @@ import User from '../components/User'
 import Login from '../components/User/Login'
 import Logout from '../components/User/Logout'
 
+import Test from '../components/Test'
+
 
 const routesConfig = [{
 	path:'/',
@@ -17,7 +19,7 @@ const routesConfig = [{
 		component:ListTodo,
 	},{
 		path:'/add',
-		component:AddTodo,
+		component:AddTodo, 
 	},{
 		path:'/view/:id',
 		component:ViewTodo,
@@ -34,5 +36,8 @@ const routesConfig = [{
 	    exact:true,
 		component:Logout
 	}]
+},{
+	path:'/test',
+	component:Test
 }];
 export default routesConfig;
