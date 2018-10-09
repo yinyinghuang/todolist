@@ -4,7 +4,10 @@ import { renderRoutes} from 'react-router-config';
 
 class TodoList extends Component {
   render() {
-    return (<div>{renderRoutes(this.props.route.routes)}</div>)
+    return (<div>
+    	<p>this is todo Component</p>
+    	{renderRoutes(this.props.route.routes)}
+    </div>)
   }
 }
 

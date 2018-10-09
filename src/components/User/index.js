@@ -6,6 +6,7 @@ class User extends Component {
 	render() {
 		return (
 			<div>
+				<p>this is user Component</p>
 				{renderRoutes(this.props.route.routes)}
 			</div>			
 		);

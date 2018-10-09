@@ -7,7 +7,10 @@ export default class Test extends React.Component {
 
 	render() {
 		return (
-			<div>Test why the page will redirect to index automatically</div>
+			<div>Test why the page will redirect to index automatically
+				<p >redirect to '/'</p>
+			</div>
+
 		);
 	}
 }

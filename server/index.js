@@ -26,7 +26,7 @@ app
     .use(cors())
     .use(bodyparser())
     .use(async(ctx, next) => {
-        // console.log(`\n\n\n-------before-1--------${ctx.body} ${ctx.url} ${new Date().toLocaleString()}`);
+        console.log(`\n\n\n-------before-1---${ctx.status}----- ${new Date().toLocaleString()}`,ctx.url);
         await next();
         console.log(`-------before-2--dd------${new Date().toLocaleString()}------------`, ctx.body,ctx.url)
     })
@@ -36,7 +36,7 @@ app
     //     path: [/^\/user\/login/,/^\/user\/verify/,/^\/user\/auth/]
     // }))
     .use(static(path.resolve(__dirname, '../build')))
-    // .use(clientRouter)
+    .use(clientRouter)
     //检验
     // .use(jwtKoa({ secret: config.secret,debug:true }).unless({
     //     path: [/^\/user\/login/]
@@ -45,7 +45,7 @@ app
     .use(async(ctx, next) => {
         // console.log(`\n\n\n--------after--1------${ctx.body} ${ctx.url} ${new Date().toLocaleString()}`);
         await next();
-        console.log(`--------after---2-----${ctx.body}------------`, ctx.url);
+        console.log(`--------after---2-----${ctx.status}------------`, ctx.url);
     });
 
 (async() => {
