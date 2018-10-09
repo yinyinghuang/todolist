@@ -12,7 +12,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log('\n\n\n-----------App---------\n\n\n',this.props.user)
+		// console.log('\n\n\n-----------App---------\n\n\n',this.props.user)
 		// if(!this.props.user){
 		// 	this.props.pushAct('/user/login');
 		// }
@@ -27,16 +27,17 @@ class App extends React.Component {
 }
 
 
-const mapStateToProps = (state) => ({	
-	user:state.authUser.user	
-})
+// const mapStateToProps = (state) => ({	
+// 	user:state.authUser.user	
+// })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-		pushAct:push
-	},dispatch)
+// const mapDispatchToProps = (dispatch) => bindActionCreators({
+// 		pushAct:push
+// 	},dispatch)
 
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(App)
+// export default connect(
+// 	mapStateToProps,
+// 	mapDispatchToProps,
+// )(App)
+export default App
