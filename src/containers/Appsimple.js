@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {push,ConnectedRouter} from 'react-router-redux';
 import renderRoutes from 'react-router-config/renderRoutes';
 
+import routesConfig from '../router/routes';
 const User = (props) => {
   return (
   	<p>
@@ -43,20 +44,20 @@ const Todo = (props) => {
   )
 }
 
-const routes = [{
-	path:'/test',
-	exact:true,
-	component:Test
-},{
-	path:'/',
-	exact:true,
-	component:User
-},{
-	path:'/todo',
-	exact:true,
-	component:Todo
-}]
+// const routes = [{
+// 	path:'/test',
+// 	exact:true,
+// 	component:Test
+// },{
+// 	path:'/',
+// 	exact:true,
+// 	component:User
+// },{
+// 	path:'/todo',
+// 	exact:true,
+// 	component:Todo
+// }]
 
-const App = () => (<div>{renderRoutes(routes)}</div>)
+const App = () => (<div>{renderRoutes(routesConfig)}</div>)
 
 export default App
