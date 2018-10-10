@@ -1,38 +1,23 @@
-import React from 'react';
-import {render} from 'react-dom'
 
-import {Provider,connect} from 'react-redux'
-import {createStore,combineReducers,applyMiddleware,bindActionCreators} from 'redux'
-import thunk from 'redux-thunk'
-import {routerReducer,routerMiddleware,ConnectedRouter,push} from 'react-router-redux'
+import {hydrate} from 'react-dom';
+import history from './history';
+import app from './app/index'
 
-import Router from 'react-router/Router'
-import createBrowserHistory from 'history/createBrowserHistory'
-import renderRoutes from 'react-router-config/renderRoutes'
-
-import routesConfig from './router/routes'
-import createApp from './app/createApp'
-
-const reducers = combineReducers({
-	router:routerReducer
-})
-
-const history = createBrowserHistory()
-const initialState = window.__INITIAL_STATE__
-console.log(initialState)
-const middlewares = [thunk,routerMiddleware(history)]
-const store = createStore(reducers,initialState,applyMiddleware(...middlewares))
+// import registerServiceWorker from './registerServiceWorker';
 
 
-// const App = (props) => {
-//   return (
-//   	<Provider store={store}>
-//   		<ConnectedRouter history={history}>
-// 		    <div>{renderRoutes(routesConfig)}</div>
-// 		</ConnectedRouter>
-//     </Provider>
-//   )
-// }
-const app = createApp({store,history})
-render(app,document.getElementById('root'))
+const {createApp,configureStore} = app;
+const initialState = window && window.__INITIAL_STATE__;
+let store = configureStore(initialState)
 
+const renderApp = () => {
+	let application = createApp({store,history});
+	hydrate(application,document.getElementById('root'))
+}
+renderApp()
+// window.main = () => {
+//   renderApp()
+// };
+
+// console.log('\n------window.main----\n',window.main,'\n------window.main----\n')
+// registerServiceWorker();

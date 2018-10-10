@@ -21,7 +21,7 @@ const
     app = new Koa();
 
 mongoose.Promise = global.Promise;
-
+console.log('--------server-index------\n\n\n',process.env.NODE_ENV,'--------server-index------\n\n\n')
 app
     .use(cors())
     .use(bodyparser())
@@ -54,5 +54,5 @@ app
     } catch (e) {
         console.log(e);
     }
-    app.listen(3000);
+    app.listen(4000);
 })();
