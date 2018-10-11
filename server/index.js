@@ -21,14 +21,13 @@ const
     app = new Koa();
 
 mongoose.Promise = global.Promise;
-console.log('--------server-index------\n\n\n',process.env.NODE_ENV,'--------server-index------\n\n\n')
 app
     .use(cors())
     .use(bodyparser())
     .use(async(ctx, next) => {
-        console.log(`\n\n\n-------before-1---${ctx.status}----- ${new Date().toLocaleString()}`,ctx.url);
+        console.log(`\n\n\n-------before-1---${process.env.NODE_ENV}----- ${new Date().toLocaleString()}`,ctx.url);
         await next();
-        console.log(`-------before-2--dd------${new Date().toLocaleString()}------------`, ctx.body,ctx.url)
+        // console.log(`-------before-2--dd------${new Date().toLocaleString()}------------`, ctx.body,ctx.url)
     })
     //检测token是否正确，若存在且正确，将用户信息存放在ctx.user；
     //若存在不正确，立即返回错误信息
@@ -45,7 +44,7 @@ app
     .use(async(ctx, next) => {
         // console.log(`\n\n\n--------after--1------${ctx.body} ${ctx.url} ${new Date().toLocaleString()}`);
         await next();
-        console.log(`--------after---2-----${ctx.status}------------`, ctx.url);
+        // console.log(`--------after---2-----${ctx.status}------------`, ctx.url);
     });
 
 (async() => {
@@ -54,5 +53,5 @@ app
     } catch (e) {
         console.log(e);
     }
-    app.listen(4000);
+    app.listen(3000);
 })();

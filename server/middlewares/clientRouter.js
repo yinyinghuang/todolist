@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {renderToString} from 'react-dom/server';
-import createHistory from 'history/createMemoryHistory'
+
 import { getBundles } from 'react-loadable/webpack';
 import assets from '../../build/asset-manifest.json';
 import Helmet from 'react-helmet';
@@ -17,10 +17,6 @@ let configureStore=client.configureStore;
 let createApp=client.createApp;
 let routesConfig=client.routesConfig;
 
-const createStore=(configureStore)=>{
-  let store=configureStore()
-  return store;
-}
 // const stats = null;
 const createTags=(bundles)=>{
   
@@ -60,9 +56,8 @@ const getMatch=(routesArray, url)=>{
   })})
 }
 
-const makeup=(ctx,store,createApp,html)=>{
+const makeup=(ctx,store,history,createApp,html)=>{
   let initState=store.getState();
-  let history=createHistory({initialEntries:[ctx.req.url]});
   
   let modules=assets;
 
@@ -84,19 +79,20 @@ const makeup=(ctx,store,createApp,html)=>{
 
 
 const clientRouter=async(ctx,next)=>{
-  let html=fs.readFileSync(path.join(path.resolve(__dirname,'../../public'),'index.html'),'utf-8');
-  let store=createStore(configureStore);
-
-  let branch=matchRoutes(routesConfig,ctx.req.url);
-  
-
-  let promises = branch.map(({route,match})=>{
-    return route.thunk?(route.thunk(store)):Promise.resolve(null)
-  });
-  await Promise.all(promises).catch(err=>console.log('err:---',err))
+  console.log(`\n\n\n------------clientRouter------------${ctx.req.url}--\n\n\n`)
   let isMatch=getMatch(routesConfig,ctx.req.url);
+  console.log('\n\n\n------------clientRouter------isMatch11--------\n\n\n',isMatch,'\n\n\n------------clientRouter------isMatch11--------\n\n\n')
   if(isMatch){
-    let renderedHtml=await makeup(ctx,store,createApp,html);
+    let html=fs.readFileSync(path.join(path.resolve(__dirname,'../../public'),'index.html'),'utf-8');
+    let {store,history}=configureStore(ctx.req.url);
+
+    let branch=matchRoutes(routesConfig,ctx.req.url);   
+
+    let promises = branch.map(({route,match})=>{
+      return route.thunk?(route.thunk(store)):Promise.resolve(null)
+    });
+    await Promise.all(promises).catch(err=>console.log('err:---',err))
+    let renderedHtml=await makeup(ctx,store,history,createApp,html);
     ctx.body=renderedHtml
   }
   await next()

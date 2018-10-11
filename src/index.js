@@ -1,14 +1,13 @@
 
 import {hydrate} from 'react-dom';
-import history from './history';
 import app from './app/index'
 
 // import registerServiceWorker from './registerServiceWorker';
 
 
 const {createApp,configureStore} = app;
-const initialState = window && window.__INITIAL_STATE__;
-let store = configureStore(initialState)
+
+let {store,history} = configureStore()
 
 const renderApp = () => {
 	let application = createApp({store,history});
