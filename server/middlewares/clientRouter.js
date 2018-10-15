@@ -79,13 +79,12 @@ const makeup=(ctx,store,history,createApp,html)=>{
 
 
 const clientRouter=async(ctx,next)=>{
-  console.log(`\n\n\n------------clientRouter------------${ctx.req.url}--\n\n\n`)
+  // console.log(`\n\n\n------------clientRouter------------${ctx.req.url}--\n\n\n`)
   let isMatch=getMatch(routesConfig,ctx.req.url);
-  console.log('\n\n\n------------clientRouter------isMatch11--------\n\n\n',isMatch,'\n\n\n------------clientRouter------isMatch11--------\n\n\n')
+  // console.log('\n\n\n------------clientRouter------isMatch11--------\n\n\n',isMatch,'\n\n\n------------clientRouter------isMatch11--------\n\n\n')
   if(isMatch){
     let html=fs.readFileSync(path.join(path.resolve(__dirname,'../../public'),'index.html'),'utf-8');
     let {store,history}=configureStore(ctx.req.url);
-
     let branch=matchRoutes(routesConfig,ctx.req.url);   
 
     let promises = branch.map(({route,match})=>{

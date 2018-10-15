@@ -2,8 +2,10 @@ require('./ignore.js')();
 // require('babel-polyfill');
 require('babel-register')({
   presets: ['env', 'react'/*, 'stage-0'*/],
-  // plugins: ["react-loadable/babel",'syntax-dynamic-import',"dynamic-import-node"]
+  plugins: ["react-loadable/babel"/*,'syntax-dynamic-import',"dynamic-import-node"*/]
 });
+
+const Loadable = require('react-loadable')
 
 const
     Koa = require('koa'),
@@ -42,7 +44,7 @@ app
     // }))
     .use(router.routes())
     .use(async(ctx, next) => {
-        // console.log(`\n\n\n--------after--1------${ctx.body} ${ctx.url} ${new Date().toLocaleString()}`);
+        console.log(`\n\n\n--------after--1------${ctx.body} ${ctx.url} ${new Date().toLocaleString()}`);
         await next();
         // console.log(`--------after---2-----${ctx.status}------------`, ctx.url);
     });
@@ -53,5 +55,8 @@ app
     } catch (e) {
         console.log(e);
     }
-    app.listen(3000);
+    // Loadable.preloadAll().then(() => {
+        app.listen(3000);
+    // })
+    
 })();

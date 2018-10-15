@@ -6,6 +6,7 @@ import app from './app/index'
 
 
 const {createApp,configureStore} = app;
+// console.log('\n-----process.env.RUN_ENV----\n',process.env.RUN_ENV,'\n-----process.env.RUN_ENV----\n')
 
 let {store,history} = configureStore()
 

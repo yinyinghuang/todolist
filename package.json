@@ -68,9 +68,9 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "server": "set NODE_ENV=production&& nodemon ./server/index.js --watch config --watch server ",
+    "start": "cross-env RUN_ENV=dev node scripts/start.js",
+    "build": "cross-env RUN_ENV=build node scripts/build.js",
+    "server": "cross-env  RUN_ENV=server NODE_ENV=production nodemon ./server/index.js --watch config --watch server ",
     "custom": "concurrently \"npm start\" \"npm run server\"",
     "test": "node scripts/test.js --env=jsdom"
   },
@@ -119,6 +119,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
-    "@babel/node": "^7.0.0"
+    "@babel/node": "^7.0.0",
+    "cross-env": "^5.2.0"
   }
 }

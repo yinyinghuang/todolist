@@ -2,22 +2,22 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import withRouter from 'react-router/withRouter'
-import {push,replace} from 'react-router-redux';
+import {replace} from 'react-router-redux';
 import renderRoutes from 'react-router-config/renderRoutes';
 
 import routesConfig from '../router/routes';
 
 class App extends React.Component {
 	// componentDidMount() {
-		
-	// 	if(!this.props.user){
-	// 		this.props.replaceAct('/user/login');
+	// 	const regBlackList = /^(\/user\/(login|logout))/i
+	// 	const {user,location:{pathname}} = this.props
+	// 	if(!user && !regBlackList.test(pathname)){
+	// 		this.props.replaceAct(`/user/login?redirect=${this.props.location.pathname}`);
 	// 	}
 	// }
 
 	render() {
 		return (<div>
-			<div>whyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy</div>
 			<div>{renderRoutes(routesConfig)}</div>
 		</div>);
 	}
